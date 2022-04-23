@@ -1,0 +1,44 @@
+.layer {
+  padding: 1rem;
+  display: flex;
+}
+
+.layer.position-top {
+  align-items: flex-start;
+}
+
+.layer.position-middle {
+  align-items: center;
+}
+
+.layer.position-bottom {
+  align-items: flex-end;
+}
+
+.layer.position-left {
+  justify-content: flex-start;
+}
+
+.layer.position-center {
+  justify-content: center;
+}
+
+.layer.position-right {
+  justify-content: flex-end;
+}
+
+.inner {
+  display: flex;
+}
+
+.inner.vertical {
+  flex-direction: column;
+}
+
+.inner.horizonal {
+  flex-direction: row;
+}
+
+::slotted(*) {
+  pointer-events: initial;
+}

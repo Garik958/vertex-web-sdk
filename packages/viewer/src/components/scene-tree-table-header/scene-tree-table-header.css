@@ -1,0 +1,14 @@
+:host {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0.5rem 0;
+}

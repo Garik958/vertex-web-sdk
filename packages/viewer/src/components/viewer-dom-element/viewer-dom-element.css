@@ -1,0 +1,8 @@
+:host {
+  position: absolute;
+  pointer-events: none;
+}
+
+:host(:not([interactions-off])) > * {
+  pointer-events: auto;
+}

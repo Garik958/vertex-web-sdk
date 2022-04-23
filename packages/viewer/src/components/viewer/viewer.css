@@ -1,0 +1,49 @@
+:host {
+  /**
+   * @prop --image-background: The background color of the rendered image.
+   * Defaults to `--viewer-background`.
+   */
+  --image-background: var(--image-background);
+
+  /**
+   * @prop --viewer-background: The background color of the viewer component.
+   * This will be visible if the size of the viewer becomes greater than the
+   * maximum image size of 1280x1280. Defaults to #FFFFFF.
+   */
+  --viewer-background: var(--viewer-background);
+
+  display: block;
+  position: relative;
+  width: 300px;
+  height: 300px;
+  min-width: 1px;
+  min-height: 1px;
+}
+
+.canvas-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: var(--image-background, var(--viewer-background, #ffffff));
+}
+.enable-pointer-events {
+  touch-action: none;
+}
+
+.viewer-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--viewer-background, #ffffff);
+}
+
+.error-message {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+  text-align: center;
+}

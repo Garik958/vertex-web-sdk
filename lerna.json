@@ -1,0 +1,13 @@
+{
+  "version": "0.13.1",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {
+    "version": {
+      "allowBranch": [
+        "master",
+        "release-temp/*"
+      ]
+    }
+  }
+}

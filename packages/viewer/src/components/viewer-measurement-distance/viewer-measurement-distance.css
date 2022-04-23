@@ -1,0 +1,185 @@
+:host {
+  /**
+   * @prop --viewer-measurement-distance-accent-color: A CSS color that
+   * specifies the color of lines, anchors and borders.
+   */
+  --viewer-measurement-distance-accent-color: var(--neutral-900);
+
+  /**
+   * @prop --viewer-measurement-distance-contrast-color: A CSS color that
+   * specifies a color opposite of the accent color.
+   */
+  --viewer-measurement-distance-contrast-color: var(--white);
+
+  /**
+   * @prop --viewer-measurement-distance-invalid-accent-color: A CSS color that
+   * specifies the color of lines, anchors and borders when the measurement is
+   * invalid.
+   */
+  --viewer-measurement-distance-invalid-accent-color: var(--red-600);
+
+  /**
+   * @prop --viewer-measurement-distance-invalid-contrast-color: A CSS color
+   * that specifies a color opposite of the accent color when the measurement
+   * is invalid.
+   */
+  --viewer-measurement-distance-invalid-contrast-color: var(--white);
+
+  /**
+   * @prop --viewer-measurement-distance-line-stroke-width: A CSS length that
+   * width of the measurement line's stroke.
+   */
+  --viewer-measurement-distance-line-stroke-width: 1.25px;
+
+  /**
+   * @prop --viewer-measurement-distance-line-fill-width: A CSS length that
+   * width of the measurement line's fill.
+   */
+  --viewer-measurement-distance-line-fill-width: 2px;
+
+  /**
+   * @prop --viewer-measurement-distance-distance-border: A CSS border that
+   * specifies the border color or image for the measurement's label.
+   */
+  --viewer-measurement-distance-distance-border: 1px solid
+    var(--viewer-measurement-distance-accent-color);
+
+  /**
+   * @prop --viewer-measurement-distance-distance-border-radius: A CSS length
+   * that specifies the border radius for the measurement's label.
+   */
+  --viewer-measurement-distance-distance-border-radius: 0.25rem;
+
+  /**
+   * @prop --viewer-measurement-distance-distance-padding: A CSS length that
+   * specifies the padding of the measurement's label.
+   */
+  --viewer-measurement-distance-distance-padding: 0.375rem 0.5rem;
+
+  color: var(--viewer-measurement-distance-accent-color);
+  font-size: 0.75rem;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+:host([invalid]:not([invalid='false'])) {
+  --viewer-measurement-distance-accent-color: var(
+    --viewer-measurement-distance-invalid-accent-color
+  ) !important;
+
+  --viewer-measurement-distance-contrast-color: var(
+    --viewer-measurement-distance-invalid-contrast-color
+  ) !important;
+}
+
+.line {
+  --viewer-measurement-line-stroke: var(
+    --viewer-measurement-distance-contrast-color
+  );
+  --viewer-measurement-line-stroke-opacity: 0.75;
+  --viewer-measurement-line-stroke-width: var(
+    --viewer-measurement-distance-line-stroke-width
+  );
+  --viewer-measurement-line-fill: var(
+    --viewer-measurement-distance-accent-color
+  );
+  --viewer-measurement-line-fill-width: var(
+    --viewer-measurement-distance-line-fill-width
+  );
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.anchor {
+  position: absolute;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  pointer-events: auto;
+}
+
+:host([interacting-anchor='start']) .anchor-start,
+:host([interacting-anchor='start']) .anchor-label-start {
+  visibility: hidden;
+}
+
+.hide-start-line-cap,
+:host([interacting-anchor='start']) .line {
+  --viewer-measurement-line-start-cap-visibility: hidden;
+}
+
+:host([interacting-anchor='end']) .anchor-end,
+:host([interacting-anchor='end']) .anchor-label-end {
+  visibility: hidden;
+}
+
+.hide-end-line-cap,
+:host([interacting-anchor='end']) .line {
+  --viewer-measurement-line-end-cap-visibility: hidden;
+}
+
+.anchor-label {
+  position: absolute;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  pointer-events: auto;
+}
+
+:host(:not([mode=''])) {
+  cursor: inherit;
+}
+:host(:not([mode=''])) .anchor {
+  cursor: move;
+}
+
+:host([mode='']) .anchor {
+  visibility: hidden;
+}
+
+.anchor-placeholder {
+  background: var(--viewer-measurement-distance-contrast-color);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+:host(:not([mode=''])) .anchor-placeholder {
+  border: 2px solid var(--viewer-measurement-distance-accent-color);
+  background: var(--viewer-measurement-distance-contrast-color);
+}
+
+:host([mode='']) .distance-label {
+  color: var(--viewer-measurement-distance-contrast-color);
+  background: var(--viewer-measurement-distance-accent-color);
+}
+
+.distance-label {
+  position: absolute;
+  background: var(--viewer-measurement-distance-contrast-color);
+  border: var(--viewer-measurement-distance-distance-border);
+  border-radius: var(--viewer-measurement-distance-distance-border-radius);
+  padding: var(--viewer-measurement-distance-distance-padding);
+  pointer-events: auto;
+}
+
+.indicator {
+  position: absolute;
+}
+
+.indicator-placeholder {
+  background: var(--viewer-measurement-distance-accent-color);
+  border: 1px solid var(--viewer-measurement-distance-contrast-color);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  box-sizing: border-box;
+}

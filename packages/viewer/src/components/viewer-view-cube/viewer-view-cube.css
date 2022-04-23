@@ -1,0 +1,241 @@
+:host {
+  /**
+   * @prop --viewer-view-cube-side-background: A CSS background value that
+   * defines the background of a side of the cube.
+   */
+  --viewer-view-cube-side-background: var(--white);
+
+  /**
+    * @prop --viewer-view-cube-side-background-hover: A CSS background value that
+    * defines the background of the hovered side of the cube. Note, the hover
+    * background is rendered on-top of the side's background.
+    */
+  --viewer-view-cube-side-background-hover: var(--blue-500);
+
+  /**
+    * @prop --viewer-view-cube-side-background-hover-opacity: A CSS number that
+    * defines the opacity of the background for a hovered side of the cube.
+    */
+  --viewer-view-cube-side-background-hover-opacity: 0.25;
+
+  /**
+    * @prop --viewer-view-cube-side-border: A CSS border value that defines the
+    * border of each side of the cube.
+    */
+  --viewer-view-cube-side-border: 1.5px solid var(--neutral-500);
+
+  /**
+   * @prop --viewer-view-cube-edge-length: A CSS length value that defines the
+   * size of an edge when hovered.
+   */
+  --viewer-view-cube-edge-length: 12px;
+
+  /**
+   * @prop --viewer-view-cube-opacity: A CSS opacity for when the cube is not
+   * hovered.
+   */
+  --viewer-view-cube-opacity: 0.8;
+
+  /**
+   * @prop --viewer-view-cube-triad-x-axis-color: A CSS color for the X axis of
+   * the triad
+   */
+  --viewer-view-cube-triad-x-axis-color: var(--x-axis-color);
+
+  /**
+   * @prop --viewer-view-cube-triad-y-axis-color: A CSS color for the Y axis of
+   * the triad
+   */
+  --viewer-view-cube-triad-y-axis-color: var(--y-axis-color);
+
+  /**
+   * @prop --viewer-view-cube-triad-z-axis-color: A CSS color for the Z axis of
+   * the triad
+   */
+  --viewer-view-cube-triad-z-axis-color: var(--z-axis-color);
+
+  display: block;
+  color: var(--neutral-700);
+  width: 80px;
+  height: 80px;
+  margin: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.renderer {
+  position: unset;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.reference-point {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.triad {
+  pointer-events: none;
+}
+
+.triad-axis {
+  width: 100%;
+  height: 1.5px;
+  outline: 1px solid transparent;
+  transform: translateX(50%);
+}
+.triad-axis-x {
+  background-color: #ea3324;
+}
+.triad-axis-y {
+  background-color: #4faf32;
+}
+.triad-axis-z {
+  background-color: #0000ff;
+}
+
+.triad-label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.6875rem;
+}
+.triad-label-x {
+  color: var(--viewer-view-cube-triad-x-axis-color);
+}
+.triad-label-y {
+  color: var(--viewer-view-cube-triad-y-axis-color);
+}
+.triad-label-z {
+  color: var(--viewer-view-cube-triad-z-axis-color);
+}
+
+.cube {
+  pointer-events: initial;
+}
+.cube:hover .cube-side-face {
+  opacity: 1;
+}
+
+.cube-side {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.cube-side-face {
+  box-sizing: border-box;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  width: 100%;
+  height: 100%;
+  background-color: var(--viewer-view-cube-side-background);
+  border: var(--viewer-view-cube-side-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: 1px solid transparent;
+  opacity: var(--viewer-view-cube-opacity);
+  transition: opacity 0.2s ease-in-out;
+}
+.cube-side-face::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--viewer-view-cube-edge-length) - 4px);
+  right: calc(var(--viewer-view-cube-edge-length) - 4px);
+  top: calc(var(--viewer-view-cube-edge-length) - 4px);
+  bottom: calc(var(--viewer-view-cube-edge-length) - 4px);
+}
+
+.cube-corner,
+.cube-edge {
+  position: relative;
+}
+
+.cube-corner-face,
+.cube-edge-face {
+  position: absolute;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.cube-edge-face.top {
+  top: 0;
+  left: var(--viewer-view-cube-edge-length);
+  right: var(--viewer-view-cube-edge-length);
+  height: var(--viewer-view-cube-edge-length);
+}
+.cube-edge-face.bottom {
+  bottom: 0;
+  left: var(--viewer-view-cube-edge-length);
+  right: var(--viewer-view-cube-edge-length);
+  height: var(--viewer-view-cube-edge-length);
+}
+.cube-edge-face.left {
+  left: 0;
+  top: var(--viewer-view-cube-edge-length);
+  bottom: var(--viewer-view-cube-edge-length);
+  width: var(--viewer-view-cube-edge-length);
+}
+.cube-edge-face.right {
+  right: 0;
+  top: var(--viewer-view-cube-edge-length);
+  bottom: var(--viewer-view-cube-edge-length);
+  width: var(--viewer-view-cube-edge-length);
+}
+
+.cube-corner-face {
+  width: var(--viewer-view-cube-edge-length);
+  height: var(--viewer-view-cube-edge-length);
+}
+.cube-corner-face.top-left {
+  top: 0;
+  left: 0;
+}
+.cube-corner-face.top-right {
+  top: 0;
+  right: 0;
+}
+.cube-corner-face.bottom-right {
+  bottom: 0;
+  right: 0;
+}
+.cube-corner-face.bottom-left {
+  bottom: 0;
+  left: 0;
+}
+
+.cube-shadow {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.cube-shadow-face {
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  top: 4px;
+  bottom: 4px;
+  background-color: black;
+  opacity: 0.12;
+  filter: blur(4px);
+}
+
+.cube-corner .cube-corner-face,
+.cube-edge .cube-edge-face,
+.cube-side .cube-side-face::before {
+  background: var(--viewer-view-cube-side-background-hover);
+  opacity: 0;
+}
+
+.cube-corner:hover .cube-corner-face,
+.cube-edge:hover .cube-edge-face,
+.cube-side:hover .cube-side-face::before {
+  opacity: var(--viewer-view-cube-side-background-hover-opacity);
+}
+
+.cube-corner.disabled,
+.cube-edge.disabled,
+.cube-side.disabled {
+  pointer-events: none;
+}
